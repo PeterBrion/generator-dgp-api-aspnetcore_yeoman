@@ -7,7 +7,7 @@
     <AssemblyName>StarterKit</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>StarterKit</PackageId>
-    <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
 
