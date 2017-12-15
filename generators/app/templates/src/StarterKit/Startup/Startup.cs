@@ -53,7 +53,10 @@ namespace StarterKit
         opt.ApplicationName = "StarterKit";
       });
 
-      services.AddCorrelation();
+      services.AddCorrelation(options =>
+      {
+          options.CorrelationHeaderRequired = true;
+      });
 
       services.AddLoggingEngine();
 
