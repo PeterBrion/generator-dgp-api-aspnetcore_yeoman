@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +15,7 @@ using Digipolis.Correlation;
 using Swashbuckle.AspNetCore.Swagger;
 using AutoMapper;
 using System.Reflection;
+using StarterKit.Shared.Swagger;
 
 namespace StarterKit
 {
@@ -78,17 +79,22 @@ namespace StarterKit
         options.SwaggerDoc("v1",
             new Info
             {
-              Title = "STARTERKIT API",
-              Version = "v1",
-              Description = "<API DESCRIPTION>",
-              TermsOfService = "None",
-              Contact = new Contact()
-              {
-                Email = "<MAIL>",
-                Name = "<NAME>"
-              }
+              Title = "StarterKit",
+              Version = "v1"
+              // Description = "<API DESCRIPTION>",
+              // TermsOfService = "None",
+              // Contact = new Contact()
+              // {
+              //   Email = "<MAIL>",
+              //   Name = "<NAME>"
+              // }
             }
          );
+
+        options.OperationFilter<AddCorrelationHeaderRequired>();
+        options.OperationFilter<AddAuthorizationHeaderRequired>();
+        options.OperationFilter<RemoveSyncRootParameter>();
+        options.OperationFilter<LowerCaseQueryAndBodyParameterFilter>();
 
         var location = Assembly.GetEntryAssembly().Location;
 
