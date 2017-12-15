@@ -1,4 +1,9 @@
 # generator-dgp-api-aspnetcore
+
+## 4.1.1 (2017-12-15)
+
+- add information to wizard questions.
+
 ## 4.1.0
 
 - added status API.

@@ -170,11 +170,7 @@ module.exports = yeoman.generators.Base.extend({
 });
 
 function getDataProvider(input, projectName) {
-  var efCorePackage = '"Microsoft.EntityFrameworkCore": "1.0.0",\n';
-  var efDesignPackage = '        "Microsoft.EntityFrameworkCore.Design": "1.0.0-preview2-final",\n'
-  var npgSqlPackage = '        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.1",\n';
-  var sqlServerPackage = '        "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",\n';
-  var dataAccessPackage = '        "Digipolis.DataAccess": "2.5.2",';
+  var dataPackage = '<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />';
   var usings = 'using Microsoft.EntityFrameworkCore;\nusing Microsoft.EntityFrameworkCore.Infrastructure;\nusing Microsoft.EntityFrameworkCore.Migrations;\nusing Digipolis.DataAccess;\nusing StarterKit.DataAccess;\n'.replace("StarterKit", projectName);
   var ctor = '.AddJsonFile("app.json")\n                .AddJsonFile("dataaccess.json")';
   var tools = '"Microsoft.EntityFrameworkCore.Tools": { "version": "1.0.0-preview2-final", "type": "build" },';
@@ -182,7 +178,7 @@ function getDataProvider(input, projectName) {
   var dataProvider = { input: input, package: '', startupServices: '', startupImports: '', startupCtor: '.AddJsonFile("app.json")', connString: '', tools: '' };
 
   if (input.toLowerCase() === 'p') {
-      dataProvider.package = efCorePackage + efDesignPackage + npgSqlPackage + dataAccessPackage;
+      dataProvider.package = dataPackage;
       dataProvider.startupServices = 'services.AddDataAccess<EntityContext>();\n' +
                                      '            var connString = GetConnectionString();\n' +
                                      '            services.AddDbContext<EntityContext>(options => {\n' +
@@ -195,7 +191,7 @@ function getDataProvider(input, projectName) {
       dataProvider.tools = tools;
   }
   else if (input.toLowerCase() === 'm') {
-      dataProvider.package = efCorePackage + efDesignPackage + sqlServerPackage + dataAccessPackage;
+      dataProvider.package = dataPackage;
       dataProvider.startupServices = 'services.AddDataAccess<EntityContext>();\n' +
                                      '            var connString = GetConnectionString();\n' +
                                      '            services.AddDbContext<EntityContext>(options => {\n' +
