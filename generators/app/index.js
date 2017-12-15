@@ -101,7 +101,7 @@ module.exports = yeoman.generators.Base.extend({
                         .replace(/http:\/\/localhost:51002/g, "http://localhost:" + kestrelHttpPort)
                         .replace(/http:\/\/localhost:51001/g, "http://localhost:" + iisHttpPort)
                         .replace(/"sslPort": 44300/g, "\"sslPort\": " + iisHttpsPort)
-                        .replace(/\/\/--dataaccess-package--/g, dataProvider.package)
+                        .replace(/<!-- dataaccess-package -->/g, dataProvider.package)
                         .replace(/\/\/--dataaccess-startupImports--/g, dataProvider.startupImports)
                         .replace(/\/\/--dataaccess-startupServices--/g, dataProvider.startupServices)
                         .replace(/\.AddJsonFile\("app\.json"\)/g, dataProvider.startupCtor)
